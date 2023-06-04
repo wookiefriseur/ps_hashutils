@@ -20,11 +20,6 @@ jobs:
         with:
           ref: main
 
-      - name: Load required scripts
-        run: |
-          # Load Update-PSManifestVersion <MANIFEST_FILE> <IMPACT> | returns new version
-          Invoke-Expression (Invoke-RestMethod -Uri https://raw.githubusercontent.com/wookiefriseur/valor-modulis/main/.scripts/manifestVersion.ps1)
-
       - name: Get Version Impact from commit message
         id: get_versionchange
         run: |
@@ -40,6 +35,8 @@ jobs:
       - name: Update Version
         id: update_version
         run: |
+          # Load Update-PSManifestVersion <MANIFEST_FILE> <IMPACT> | returns new version
+          Invoke-Expression (Invoke-RestMethod -Uri https://raw.githubusercontent.com/wookiefriseur/valor-modulis/main/.scripts/updatePSManifest.ps1)
           $manifestFile = $(Get-ChildItem *.psd1 -Recurse | Select-Object -First 1).FullName
           $newVersion = Update-PSManifestVersion $manifestFile $env:IMPACT
           Write-Output "VERSION=$newVersion" >> $env:GITHUB_OUTPUT
