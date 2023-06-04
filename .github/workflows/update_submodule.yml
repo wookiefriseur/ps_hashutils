@@ -67,7 +67,6 @@ jobs:
       - name: Trigger update in main repo
         run: |
           gh workflow run proxy_update_submodule_refs.yml `
-          -f event_type=proxy_update `
           --repo wookiefriseur/valor-modulis
         env:
           GITHUB_TOKEN: ${{ secrets.VM_ACTIONS }}
