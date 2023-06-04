@@ -20,8 +20,8 @@ jobs:
         with:
           ref: main
       - run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@users.noreply.github.com"
 
       - name: Get Version Impact from commit message
         id: get_versionchange
