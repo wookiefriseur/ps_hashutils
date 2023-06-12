@@ -45,7 +45,7 @@ Describe 'Hash generation tests' {
           "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8", # a
           "fa715b6b274fe68d4d41b6b1ff5d618e100d35b1" # Moin
         )
-        $actual = @(1, "a", "Moin") | Get-Hash -Method SHA1
+        $actual = @(1, "a", "Moin") | Get-WIPHash -Method SHA1
 
         $actual | Should -Be $expected
       }
